@@ -1,3 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply min-w-96;
+        @apply max-w-[34rem];
+
+        @apply bg-cyan-800;
+    }
+
+    header {
+        @apply flex justify-between items-center;
+        @apply p-4;
+        @apply text-neutral-50;
+    }
+    header h1 {
+        @apply font-mono tracking-tighter;
+    }
+
+    main {
+        @apply flex-1;
+        @apply bg-neutral-100 dark:bg-stone-900;
+        @apply text-neutral-950 dark:text-neutral-200;
+    }
+
+    footer {
+        @apply px-4 py-2 text-center;
+        @apply bg-neutral-100 dark:bg-stone-800;
+        @apply text-neutral-700 dark:text-neutral-400;
+    }
+}
+@layer components {
+    div.content {
+        @apply flex flex-col items-stretch;
+    }
+    .button {
+        @apply px-4 py-2;
+        @apply rounded-xl;
+
+        @apply text-neutral-50/80;
+        @apply bg-cyan-700;
+
+        @apply hover:text-neutral-50;
+        @apply hover:bg-cyan-600;
+    }
+    .checkbox {
+        @apply button cursor-pointer;
+        @apply flex items-center gap-2;
+    }
+    .checkbox > input[type="checkbox"] {
+        @apply accent-white;
+    }
+
+    .tab-container {
+        @apply flex;
+        @apply bg-neutral-100 dark:bg-stone-800;
+    }
+    .tab-container > .tab {
+        @apply flex justify-center items-center;
+
+        @apply text-neutral-700 dark:text-neutral-400;
+        @apply border-b-2 border-b-transparent;
+    }
+    .tab-container > .tab.tab-active {
+        @apply text-neutral-950 dark:text-neutral-200;
+        @apply border-b-current;
+    }
+
+    .tab-container > .tab:not(.tab-active) > span {
+        @apply hidden;
+    }
+    .tab-container > .tab.tab-active > button {
+        @apply hidden;
+    }
+    .tab-container > .tab > * {
+        @apply px-4 py-2;
+    }
+    .tab-content {
+        @apply px-8 py-4;
+        @apply flex flex-col;
+        @apply gap-4;
+    }
+    .tab-content:not(.tab-active) {
+        @apply hidden;
+    }
+}

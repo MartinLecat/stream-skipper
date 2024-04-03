@@ -5,47 +5,122 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./style-tw.css">
+    <script>
+        function updateTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                localStorage.theme = "dark";
+                document.documentElement.classList.add('dark');
+            } else {
+                localStorage.theme = "light";
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        function toggleTheme() {
+            localStorage.theme = localStorage.theme === "dark" ? "light" : "dark";
+            updateTheme();
+        }
+        updateTheme();
+    </script>
+
+
     <script src="./main.ts" type="module"></script>
 </head>
 
-<body class="px-4 py-2 bg-neutral-50 max-w-[600px] max-h-[800px]">
-    <main class="flex flex-col items-stretch gap-4">
-        <h1 class="text-5xl text-center">Stream Skipper</h1>
-        <section class="flex flex-col gap-2 p-4 border rounded-md border-neutral-500">
-            <h2 class="text-4xl">Default Settings</h2>
-            <div class="flex justify-between gap-1">
-                <span>
-                    <input type="checkbox" name="skip-intro" id="skip-intro" />
-                    <label for="skip-intro">Skip Intro</label>
-                </span>
-                <span>
-                    <input type="checkbox" name="skip-summary" id="skip-summary" />
-                    <label for="skip-summary">Skip Summary</label>
-                </span>
-                <span>
-                    <input type="checkbox" name="skip-outro" id="skip-outro" />
-                    <label for="skip-outro">Skip Outro</label>
-                </span>
+<body>
+    <div class="content">
+        <header>
+            <h1 class="text-4xl">Stream Skipper</h1>
+            <button class="p-2 button" id="toggle-dark" type="button">
+                <svg xmlns="http: //www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                    class="hidden w-6 h-6 dark:block">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                    class="w-6 h-6 dark:hidden">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                </svg>
+                <span class="sr-only">Toggle theme</span>
+            </button>
+        </header>
+        <main>
+            <div class="tab-container">
+                <div class="tab tab-active" data-target="#tab-netflix">
+                    <button type="button">Netflix</button>
+                    <span>Netflix</span>
+                </div>
+                <div class="tab" data-target="#tab-prime-video">
+                    <button type="button">Prime Video</button>
+                    <span>Prime Video</span>
+                </div>
+                <div class="tab" data-target="#tab-disney-plus">
+                    <button type="button">Disney+</button>
+                    <span>Disney+</span>
+                </div>
             </div>
-        </section>
-        <section class="flex flex-col gap-2 p-4 border rounded-md border-neutral-500">
-            <h2 class="text-4xl">Netflix Settings</h2>
-            <div class="flex justify-between gap-1">
-                <span>
-                    <input type="checkbox" name="skip-intro" id="skip-intro" />
-                    <label for="skip-intro">Skip Intro</label>
-                </span>
-                <span>
-                    <input type="checkbox" name="skip-summary" id="skip-summary" />
-                    <label for="skip-summary">Skip Summary</label>
-                </span>
-                <span>
-                    <input type="checkbox" name="skip-outro" id="skip-outro" />
-                    <label for="skip-outro">Skip Outro</label>
-                </span>
+
+            <div class="tab-content tab-active" id="tab-netflix">
+                <div class="flex items-center justify-center">
+                    <img src="/Netflix.png" alt="Netflix" class="h-20">
+                </div>
+                <label class="checkbox" for="netflix-skip-intros">
+                    <input type="checkbox" name="netflix-skip-intros" id="netflix-skip-intros">
+                    <span>Skip intros</span>
+                </label>
+                <label class="checkbox" for="netflix-skip-summarize">
+                    <input type="checkbox" name="netflix-skip-summarize" id="netflix-skip-summarize">
+                    <span>Skip summarize</span>
+                </label>
+                <label class="checkbox" for="netflix-skip-outros">
+                    <input type="checkbox" name="netflix-skip-outros" id="netflix-skip-outros">
+                    <span>Skip outros</span>
+                </label>
             </div>
-        </section>
-    </main>
+            <div class="tab-content" id="tab-prime-video">
+                <div class="flex items-center justify-center">
+                    <img src="/PrimeVideo.png" alt="Netflix" class="h-20 dark:invert">
+                </div>
+                <label class="checkbox" for="prime-video-skip-intros">
+                    <input type="checkbox" name="prime-video-skip-intros" id="prime-video-skip-intros">
+                    <span>Skip intros</span>
+                </label>
+                <label class="checkbox" for="prime-video-skip-summarize">
+                    <input type="checkbox" name="prime-video-skip-summarize" id="prime-video-skip-summarize">
+                    <span>Skip summarize</span>
+                </label>
+                <label class="checkbox" for="prime-video-skip-outros">
+                    <input type="checkbox" name="prime-video-skip-outros" id="prime-video-skip-outros">
+                    <span>Skip outros</span>
+                </label>
+            </div>
+            <div class="tab-content" id="tab-disney-plus">
+                <div class="flex items-center justify-center">
+                    <img src="/Disney.png" alt="Netflix" class="h-20">
+                </div>
+                <label class="checkbox" for="disney-skip-intros">
+                    <input type="checkbox" name="disney-skip-intros" id="disney-skip-intros">
+                    <span>Skip intros</span>
+                </label>
+                <label class="checkbox" for="disney-skip-summarize">
+                    <input type="checkbox" name="disney-skip-summarize" id="disney-skip-summarize">
+                    <span>Skip summarize</span>
+                </label>
+                <label class="checkbox" for="disney-skip-outros">
+                    <input type="checkbox" name="disney-skip-outros" id="disney-skip-outros">
+                    <span>Skip outros</span>
+                </label>
+            </div>
+
+
+        </main>
+        <footer>
+            <span>
+                A <a href="https://github.com/MartinLecat">Martin Lecat</a> project
+            </span>
+        </footer>
+    </div>
 </body>
 
 </html>
