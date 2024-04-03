@@ -1,0 +1,43 @@
+{
+    "name": "stream-skipper",
+    "version": "1.0.0",
+    "description": "A small, light, configurable web extension to skip",
+    "main": "index.js",
+    "type": "module",
+    "license": "AGPL-version-3.0",
+    "private": true,
+    "homepage": "https://github.com/MartinLecat/stream-skipper",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MartinLecat/stream-skipper"
+    },
+    "bugs": "https://github.com/MartinLecat/stream-skipper/issues",
+    "keywords": [
+        "web",
+        "web-extension",
+        "firefox",
+        "typescript",
+        "netflix",
+        "prime video"
+    ],
+    "author": {
+        "name": "Martin Lecat",
+        "email": "contact@martinlecat.fr",
+        "url": "https://github.com/MartinLecat/"
+    },
+    "scripts": {
+        "compile": "tsc --noEmit",
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@types/webextension-polyfill": "^0.10.0",
+        "autoprefixer": "^10.4.19",
+        "postcss": "^8.4.38",
+        "tailwindcss": "^3.4.3",
+        "typescript": "^5.3.2",
+        "vite": "^5.0.0",
+        "vite-plugin-web-extension": "^4.0.0",
+        "webextension-polyfill": "^0.10.0"
+    }
+}

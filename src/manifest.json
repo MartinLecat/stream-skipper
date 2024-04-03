@@ -1,0 +1,53 @@
+{
+    "{{chrome}}.manifest_version": 3,
+    "{{firefox}}.manifest_version": 2,
+
+    "name": "Stream Skipper - Dive into your shows",
+    "short_name": "Stream Skip",
+    "description": "A small, light, configurable web extension to skip",
+    "author": "Martin Lecat",
+    "version": "1.0.0",
+    "homepage_url": "https://github.com/MartinLecat/stream-skipper",
+    "icons": {
+        "16": "icon/16.png",
+        "32": "icon/32.png",
+        "48": "icon/48.png",
+        "96": "icon/96.png",
+        "128": "icon/128.png"
+    },
+
+    "{{chrome}}.action": {
+        "default_area": "navbar",
+        "default_icon": {
+            "16": "icon/16.png",
+            "32": "icon/32.png",
+            "48": "icon/48.png",
+            "96": "icon/96.png",
+            "128": "icon/128.png"
+        },
+        "default_title": "Stream Skipper",
+        "default_popup": "src/action/index.html"
+    },
+    "{{firefox}}.browser_action": {
+        "default_area": "navbar",
+        "default_icon": {
+            "16": "icon/16.png",
+            "32": "icon/32.png",
+            "48": "icon/48.png",
+            "96": "icon/96.png",
+            "128": "icon/128.png"
+        },
+        "default_title": "Stream Skipper",
+        "default_popup": "src/action/index.html"
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["*://*.netflix.com/watch/*"],
+            "js": ["src/content/netflix.ts"],
+            "run_at": "document_idle"
+        }
+    ],
+
+    "permissions": ["activeTab", "storage"]
+}
